@@ -9,15 +9,14 @@ public class Cart {
 
     public void addProduct(Product product, int quantity) {
         if (product.isExpired()) {
-            System.out.println("Error: Cannot add expired product " + product.name);
+            System.out.println("Error: Cannot add " + product.name + " it's expired ");
             return;
         }
         if (quantity > product.quantity) {
-            System.out.println("Error: Not enough stock for " + product.name);
+            System.out.println("Error: Not enough " + product.name + " in stock");
             return;
         }
         items.add(new CartItem(product, quantity));
-        System.out.println(quantity + "x " + product.name + " added to cart.");
     }
 
     public boolean isEmpty() {
