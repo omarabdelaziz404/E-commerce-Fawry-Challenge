@@ -1,0 +1,59 @@
+1. Product in Stock + Enough Balance
+Customer customer = new Customer("Ahmed", 5000);
+Cart cart = new Cart();
+cart.addProduct(meat, 2);
+cart.addProduct(chicken, 1);
+cart.addProduct(scratchCard, 1);
+cart.addProduct(tv, 1);
+checkout(customer, cart, SHIPPING_RATE_PER_KG);
+
+CONSOLE OUTPUT:
+** Shipment notice **
+2x Meat 1000g
+1x Chicken 800g
+1x Mobile Scratch Card 100g
+1x TV 3500g
+Total package weight 5.4kg
+
+** Checkout receipt **
+2x Meat 600
+1x Chicken 150
+1x Mobile Scratch Card 50
+1x TV 900
+----------------------
+Subtotal: 1700.0
+Shipping: 162.0
+Amount: 1862.0
+Current balance: 3138.0
+
+2. Balance Isn't Enough
+Customer customer = new Customer("Ahmed", 5);
+cart.addProduct(meat, 2);
+checkout(customer, cart, SHIPPING_RATE_PER_KG);
+
+CONSOLE OUTPUT:
+Error: Insufficient balance
+
+3. Empty Cart
+checkout(customer, cart, SHIPPING_RATE_PER_KG);
+
+CONSOLE OUTPUT:
+Error: Cart is empty.
+
+4. Product Not in Stock
+cart.addProduct(meat, 10);   // Assuming only 5 in stock
+checkout(customer, cart, SHIPPING_RATE_PER_KG);
+
+CONSOLE OUTPUT:
+Error: Not enough Meat in stock
+Error: Cart is empty.
+
+5. Expired Product
+Product milk = new Product("Milk", 50, 10, true, LocalDate.now().minusDays(2), true, 1.0);
+cart.addProduct(milk, 1);
+checkout(customer, cart, SHIPPING_RATE_PER_KG);
+
+CONSOLE OUTPUT:
+Error: Cannot add Milk, it's expired
+Error: Cart is empty.
+
